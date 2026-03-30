@@ -32,11 +32,15 @@ extern "C" {
 #define DWC_PCIE_MMIO_LE_SPACE (0)
 #endif
 
-/* Memory barriers: provide weak definitions if not available */
+/* Memory barriers: ARM dsb/isb when available, otherwise compiler barrier */
 static inline void dwh_pcie_mem_barrier(void)
 {
+#if defined(__aarch64__) || defined(__arm__)
     __asm__ volatile ("dsb sy" ::: "memory");
     __asm__ volatile ("isb" ::: "memory");
+#else
+    __asm__ volatile ("" ::: "memory");
+#endif
 }
 
 /* Byte-swap helpers */
