@@ -4,7 +4,7 @@
 #include "dwh_pcie_pipe_phy.h"
 
 /* Default weak hooks */
-dwh_status_t dwh_default_phy_read(uint16_t reg, uint16_t *val)
+dwh_status_t __attribute__((weak)) dwh_default_phy_read(uint16_t reg, uint16_t *val)
 {
     (void)reg;
     if (val == NULL) {
@@ -14,7 +14,7 @@ dwh_status_t dwh_default_phy_read(uint16_t reg, uint16_t *val)
     return DWH_E_UNSUPPORTED;
 }
 
-dwh_status_t dwh_default_phy_write(uint16_t reg, uint16_t val)
+dwh_status_t __attribute__((weak)) dwh_default_phy_write(uint16_t reg, uint16_t val)
 {
     (void)reg;
     (void)val;
