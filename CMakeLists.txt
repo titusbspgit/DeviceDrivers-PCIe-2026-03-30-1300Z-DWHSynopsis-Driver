@@ -15,7 +15,7 @@ add_library(dwc_pcie_flit
     drivers/pcie/dwh/flit_mode/dwh_pcie_flit.c
     drivers/pcie/dwh/flit_mode/dwh_pcie_flit.h)
 
-a dd_library(dwc_pcie_pipe_phy
+add_library(dwc_pcie_pipe_phy
     drivers/pcie/dwh/pipe_phy/dwh_pcie_pipe_phy.c
     drivers/pcie/dwh/pipe_phy/dwh_pcie_pipe_phy.h)
 

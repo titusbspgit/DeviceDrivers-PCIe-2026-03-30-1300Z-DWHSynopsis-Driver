@@ -1,18 +1,18 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdbool.h>
-#include "../../../drivers/pcie/dwh/spcie/dwh_pcie_spcie.h"
-#include "../../../drivers/pcie/dwh/common/dwh_pcie_regs.h"
 
 static volatile uint32_t mock_dbi[0x1000/4];
 
-#undef DWC_PCIE_DBI_BASE
 #define DWC_PCIE_DBI_BASE ((uintptr_t)mock_dbi)
+
+#include "../../../drivers/pcie/dwh/spcie/dwh_pcie_spcie.h"
+#include "../../../drivers/pcie/dwh/common/dwh_pcie_regs.h"
 
 static void mock_extcap_chain(void)
 {
     /* SPCIE at 0x120; chain: 0x100 -> 0x120 */
-    mock_dbi[0x100/4] = (uint32_t)0xEEEE0029U; /* some other cap with next=0x120 */
+    mock_dbi[0x100/4] = (uint32_t)0x12000029U; /* id=0x0029, next=0x120 (mock other cap) */
     mock_dbi[0x120/4] = (uint32_t)SPCIE_CAP_ID; /* id */
 }
 

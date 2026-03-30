@@ -1,19 +1,18 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdbool.h>
+
+static volatile uint32_t mock_dbi[0x1000/4];
+static volatile uint32_t mock_pl[0x1000/4];
+
+#define DWC_PCIE_DBI_BASE ((uintptr_t)mock_dbi)
+#define DWC_PCIE_PORT_LOGIC_BASE ((uintptr_t)mock_pl)
+
 #include "../../../drivers/pcie/dwh/flit_mode/dwh_pcie_flit.h"
 
 #ifndef TEST_MODE
 #define TEST_MODE 0
 #endif
-
-static volatile uint32_t mock_dbi[0x1000/4];
-static volatile uint32_t mock_pl[0x1000/4];
-
-#undef DWC_PCIE_DBI_BASE
-#undef DWC_PCIE_PORT_LOGIC_BASE
-#define DWC_PCIE_DBI_BASE ((uintptr_t)mock_dbi)
-#define DWC_PCIE_PORT_LOGIC_BASE ((uintptr_t)mock_pl)
 
 int main(void)
 {

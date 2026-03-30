@@ -1,15 +1,14 @@
 #include <stdint.h>
 #include <stdio.h>
-#include "../../../drivers/pcie/dwh/aspm/dwh_pcie_aspm.h"
-#include "../../../drivers/pcie/dwh/common/dwh_pcie_regs.h"
 
 static volatile uint32_t mock_dbi[0x1000/4];
 static volatile uint32_t mock_pl[0x1000/4];
 
-#undef DWC_PCIE_DBI_BASE
-#undef DWC_PCIE_PORT_LOGIC_BASE
 #define DWC_PCIE_DBI_BASE ((uintptr_t)mock_dbi)
 #define DWC_PCIE_PORT_LOGIC_BASE ((uintptr_t)mock_pl)
+
+#include "../../../drivers/pcie/dwh/aspm/dwh_pcie_aspm.h"
+#include "../../../drivers/pcie/dwh/common/dwh_pcie_regs.h"
 
 int main(void)
 {
